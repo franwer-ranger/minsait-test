@@ -1,3 +1,4 @@
 js: yarn build --watch=forever
 css: bin/rails tailwindcss:watch
 web: bin/rails s -b 0.0.0.0 -p 3000
+vite: bin/vite dev

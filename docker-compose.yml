@@ -36,10 +36,8 @@ volumes:
   postgres_data: {}
 networks:
   server-api-network:
-    name: server-api-network
     external: true
   grocery-network:
-    name: grocery-network
     driver: bridge
 
 
