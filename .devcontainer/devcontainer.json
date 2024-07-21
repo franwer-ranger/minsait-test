@@ -1,0 +1,73 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ruby
+{
+  "name": "Grocery",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "dockerComposeFile": "./docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "service": "web",
+  "postCreateCommand": ". $NVM_DIR/nvm.sh && nvm install 18 && yarn",
+  "postStartCommand": "bundle && rails db:migrate",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  "onCreateCommand": "gem install ruby-lsp",
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "tailwindCSS.experimental.classRegex": [
+          "\\bclass:\\s*'([^']*)'",
+          "\\bclass:\\s*\"([^\"]*)\""
+        ],
+        "tailwindCSS.includeLanguages": {
+          "html.erb": "html"
+        },
+        "files.associations": {
+          "Gemfile": "ruby"
+        },
+        "sorbet.enabled": false,
+        "rubyLsp.rubyVersionManager": "none",
+        "rubyLsp.formatter": "rubocop",
+        "editor.detectIndentation": false,
+        "[javascript][json][jsonc][yaml][yml][erb]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true,
+          "editor.formatOnSave": true
+        },
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true,
+          "editor.semanticHighlighting.enabled": true,
+          "editor.formatOnType": true
+        }
+      },
+      "extensions": [
+        "github.copilot",
+        "kleber-swf.ocean-dark-extended",
+        "github.copilot-chat",
+        "ms-vsliveshare.vsliveshare",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "craigmaslowski.erb",
+        "shopify.ruby-extensions-pack",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "features": {
+    // Meta's Watchman is a Shopify's sorbet dependency.
+    "ghcr.io/vvvrrooomm/watchman/watchman:1": {}
+  }
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}

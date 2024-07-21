@@ -1,0 +1,46 @@
+name: grocery-server-only
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command: "postgres -c 'max_connections=500'"
+    environment:
+      POSTGRES_DB: mindsait_app
+      POSTGRES_USER: mindsait
+      POSTGRES_PASSWORD: blanked
+    ports:
+      - 5432:5432
+  web:
+    build:
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: db
+      DB_NAME: mindsait_app
+      DB_USERNAME: mindsait
+      DB_PASSWORD: blanked
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - default
+      - server-api-network
+      - grocery-network
+  redis:
+    image: redis:6
+volumes:
+  postgres_data: {}
+networks:
+  server-api-network:
+    name: server-api-network
+    external: true
+  grocery-network:
+    name: grocery-network
+    driver: bridge
+
+
+    

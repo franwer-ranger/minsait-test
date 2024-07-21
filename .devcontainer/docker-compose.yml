@@ -1,0 +1,37 @@
+name: grocery-devcontainer
+
+version: '3.9'
+services:
+  web:
+    image: mcr.microsoft.com/devcontainers/ruby:3.2
+    volumes:
+      - ../:/workspace:cached
+    command: sleep infinity
+    ports:
+      - 3000:3000
+    environment:
+      - RAILS_ENV=development
+      - DB_HOST=db
+      - DB_NAME=mindsait_app
+      - DB_USERNAME=mindsait
+      - DB_PASSWORD=blanked
+      - REDIS_URL=redis://redis:6379/1
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command: "postgres -c 'max_connections=500'"
+    environment:
+      POSTGRES_DB: mindsait_app
+      POSTGRES_USER: mindsait
+      POSTGRES_PASSWORD: blanked
+    ports:
+      - 5432:5432
+  redis:
+    image: redis:6
+volumes:
+  postgres_data: {}
+networks:
+  default:
+    name: grocery-network
+    external: true
