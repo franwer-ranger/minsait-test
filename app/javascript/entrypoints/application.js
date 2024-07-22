@@ -29,3 +29,5 @@ console.log(
 
 // Example: Import a stylesheet in app/frontend/index.css
 import "../components/Application";
+import "../../assets/stylesheets/application.css";
+import "../../assets/stylesheets/application.tailwind.css";

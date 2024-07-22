@@ -9,7 +9,7 @@ createInertiaApp({
   setup({ el, App, props }) {
     const container = document.getElementById(el.id)
     const root = createRoot(container!);
-    console.log(props)
+    container.style.width = '100%';
     root.render(<App {...props}/>)
   }
 })

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+/* Quiero superponer el contador sobre la imagen, la cual tendra una opacidad menor */
+.cart__title {
+  padding: 0.5rem;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+.cart__logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
