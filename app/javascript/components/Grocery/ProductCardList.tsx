@@ -11,13 +11,13 @@ const ProductCardList: FC<Props> = ({products, allProducts, setAllProducts}) => 
     setAllProducts([...allProducts, product])
   }
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 justify-items-center gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center gap-4">
       {products.map((product) => (
-        <div className="rounded-md shadow overflow-hidden w-50 h-56 flex flex-col" key={product.id}>
+        <div className="rounded-md shadow overflow-hidden w-40 h-52 flex flex-col" key={product.id}>
           <img src={product.image_url} alt={product.productName} className="block w-full h-1/3 object-cover"/>
           <div className="flex items-start justify-between gap-2 w-full p-3 text-sm flex-grow">
             <div>
-              <h1>{product.productName}</h1>
+              <h1 className="line-clamp-2">{product.productName}</h1>
               <div className="text-xs line-clamp-2">{product.productDescription}</div>
             </div>
             <div>{product.price}€</div>

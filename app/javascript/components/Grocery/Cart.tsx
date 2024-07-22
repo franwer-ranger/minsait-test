@@ -28,21 +28,21 @@ const Cart: FC<Props> = ({allProducts, setAllProducts}) => {
     acc[product.id] += 1
     return acc
   }, {})
-  
+
   const uniqProducts = allProducts.filter((value, index, array) => array.indexOf(value) === index)
 
   return (
-    <div className="rounded-md shadow p-4">
+    <div className="rounded-md shadow p-4 sticky top-4">
       <h1 className="cart__title">Cart</h1>
       <div className="flex flex-col gap-2 mt-4">
         {allProducts.length === 0 ? (
           <div className="text-sm text-gray-500">No products in cart</div>
           ) : (
             uniqProducts.map((product) => (
-              <div key={product.id} className="flex justify-between items-start">
+              <div key={product.id} className="flex justify-between items-start gap-2">
                 <img src={product.image_url} alt={product.productName} className="cart__logo"/>
                 <div className="flex flex-col items-center justify-center">
-                  <div>{product.productName}</div>
+                  <div className="text-center line-clamp-2">{product.productName}</div>
                   <div className="flex items-center justify-center gap-2">
                     {/* quiero un boton de quitar de uno en uno y de añadir más de uno en uno a cada lado */}
                     <button onClick={() => removeOneProduct(product)}>-</button>
