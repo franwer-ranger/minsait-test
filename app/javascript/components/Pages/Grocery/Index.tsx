@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { FC } from 'react'
-import { Product } from '../types'
+import { Product } from '../../types'
 import Cart from './Cart'
 import ProductCardList from './ProductCardList'
 

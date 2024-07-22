@@ -5,4 +5,8 @@ export default defineConfig({
   plugins: [
     RubyPlugin(),
   ],
+  build: {
+    outDir: 'public/assets',
+    manifest: true,
+  },
 })

@@ -3,13 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/inertia-react'
 
 createInertiaApp({
-  resolve: async (name) => {
-    return import(`./${name}`);
+  resolve: name => {
+    const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true })
+    return pages[`./Pages/${name}.tsx`]
   },
   setup({ el, App, props }) {
-    const container = document.getElementById(el.id)
-    const root = createRoot(container!);
-    container.style.width = '100%';
-    root.render(<App {...props}/>)
-  }
+
+    createRoot(el).render(<App {...props} />)
+  },
 })

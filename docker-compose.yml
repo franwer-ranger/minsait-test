@@ -14,10 +14,11 @@ services:
       - 5432:5432
   web:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.review
     volumes:
       - .:/app
     environment:
+      RAILS_ENV: review
       DB_HOST: db
       DB_NAME: mindsait_app
       DB_USERNAME: mindsait
